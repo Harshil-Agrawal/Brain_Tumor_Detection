@@ -1,3 +1,4 @@
+# Import Required Modules
 import cv2
 import os 
 import pathlib
@@ -6,14 +7,19 @@ import numpy as np
 #import tensorflow as tf 
 from tensorflow import keras
 
+#Listing the paths of the image according to class labels
 image_directory = 'datasets/'
 data_dir = pathlib.Path(image_directory)
 no_tumor = list(data_dir.glob('no/*.jpg'))
 yes_tumor = list(data_dir.glob('yes/*.jpg'))
 
+#Images
 dataset=[]
+
+#Labels 0 : No (Tumor not Detected)  1 : Yes (Tumor Detected)
 label=[]
 
+# Reading the images using opencv and converting it into numpy arrays
 for i,image in enumerate(no_tumor):
     image = cv2.imread(str(image))
     image = Image.fromarray(image,'RGB')
@@ -31,19 +37,19 @@ for i,image in enumerate(yes_tumor):
 dataset= np.array(dataset)
 label =np.array(label)
 
+
+# Splitting of Dataset
 from sklearn.model_selection import train_test_split
 X_train,X_test,y_train,y_test = train_test_split(dataset,label,test_size=0.2)
 
 #print(X_train.shape)
 
+#Normalizing the images 
 x_train = keras.utils.normalize(X_train,axis=1 ) 
 x_test = keras.utils.normalize(X_test,axis =1)
 
-#data_augmentation = keras.Sequential([
-#    keras.layers.experimental.preprocessing.RandomFlip("horizontal",input_shape=(64,64,3)),
-# #   keras.layers.experimental.preprocessing.RandomRotation(0.2),
-#    keras.layers.experimental.preprocessing.RandomZoom(0.1)
-#])
+
+# Model (CNN)
 
 model = keras.Sequential([
     

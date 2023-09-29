@@ -20,5 +20,7 @@ input_image = np.expand_dims(img, axis=0)
 # Make predictions
 predictions = model.predict(input_image)
 #print(predictions)
-
-print("Predicted class:", int(predictions[0][0]))
+if int(predictions[0][0]) == 1:
+    print("Tumor Detected")
+else:
+    print("Tumor not Detected")    
