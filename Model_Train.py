@@ -53,8 +53,7 @@ x_test = keras.utils.normalize(X_test,axis =1)
 
 model = keras.Sequential([
     
-   # data_augmentation,
-    keras.layers.Conv2D(filters=32,kernel_size=(3,3),strides=(1,1),activation="relu"),
+    keras.layers.Conv2D(filters=32,kernel_size=(3,3),strides=(1,1),activation="relu",input_shape =(64,64,3)),
     keras.layers.MaxPool2D((2,2)),
     keras.layers.Conv2D(filters=64,kernel_size=(3,3),strides=(1,1),activation="relu"),
     keras.layers.MaxPool2D((2,2)),

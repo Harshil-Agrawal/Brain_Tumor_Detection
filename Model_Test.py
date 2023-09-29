@@ -9,7 +9,7 @@ import numpy as np
 model = load_model("BrainTumor10epochs.h5")
 
 # Load and preprocess the image
-image = cv2.imread("pred\pred4.jpg")
+image = cv2.imread("pred\pred7.jpg")
 img = Image.fromarray(image)
 img = img.resize((64, 64))
 img = np.array(img)
